@@ -1,4 +1,3 @@
-```markdown
 ## Requirements
 
 ### Software Requirements
@@ -19,7 +18,6 @@ These libraries are used for data loading, preprocessing, model training, evalua
 
 This hardware is sufficient to load the dataset, run the preprocessing steps, train the models, and perform cross‑validation and hyperparameter tuning. 
 
----
 
 ## Instructions to Run the AI/ML Application
 
