@@ -24,8 +24,8 @@ This hardware is sufficient to load the dataset, run the preprocessing steps, tr
 1. **Clone the repository**
 
    ```bash
-   git clone https://gitlab.com/wgu-gitlab-environment/student-repos/rhussa11/d683-advanced-ai-and-ml.git
-   cd d683-advanced-ai-and-ml
+   git clone https://github.com/r-Dev03/shelfcast.git
+   cd shelfcast
    ```
 
 2. **Set up the Python environment**
