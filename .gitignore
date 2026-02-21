@@ -1,5 +1,44 @@
-.direnv/
-train.csv
-*.pkl
-*.csv
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+*.egg-info/
+dist/
+build/
 
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Data files
+train.csv
+*.csv
+!README.md
+
+# Model files
+*.pkl
+
+# Visualization files
+*.png
+
+# Nix
+result
+result-*
+
+# direnv
+.direnv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
