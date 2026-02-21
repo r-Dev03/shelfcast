@@ -64,6 +64,67 @@ Tree-based ensemble methods (Random Forest, Gradient Boosting) excel at:
 - **Visualization:** matplotlib
 - **Development:** Nix environment
 
+## Dataset
+
+This project uses the public [Store Item Demand Forecasting dataset from Kaggle](https://www.kaggle.com/c/demand-forecasting-kernels-only/data).
+
+### Download Instructions
+
+**1. Download the dataset:**
+- Visit the [Kaggle competition page](https://www.kaggle.com/c/demand-forecasting-kernels-only/data)
+- Download `train.csv` (you may need a free Kaggle account)
+
+**2. Place the dataset:**
+```bash
+# Save train.csv in the project root directory
+shelfcast/
+├── train.csv                    # ← Place downloaded file here
+├── preprocessing.py
+├── model_training.py
+└── ...
+```
+
+**3. Verify the dataset structure:**
+
+The `train.csv` file should contain the following columns:
+- `date` - Date of the sales record
+- `store` - Store ID
+- `item` - Item/product ID
+- `sales` - Number of items sold
+
+**Dataset Details:**
+- **Rows:** ~913,000 sales records
+- **Time Period:** 5 years of daily sales data
+- **Stores:** 10 different stores
+- **Items:** 50 different items
+- **Format:** CSV with header row
+
+### Alternative: Sample Dataset
+
+If you don't want to download from Kaggle, you can create a minimal sample dataset for testing:
+```python
+# create_sample_data.py
+import pandas as pd
+import numpy as np
+from datetime import datetime, timedelta
+
+# Generate sample data
+dates = pd.date_range(start='2018-01-01', end='2022-12-31', freq='D')
+data = []
+
+for date in dates:
+    for store in range(1, 11):  # 10 stores
+        for item in range(1, 51):  # 50 items
+            sales = np.random.randint(0, 100)
+            data.append({'date': date, 'store': store, 'item': item, 'sales': sales})
+
+df = pd.DataFrame(data)
+df.to_csv('train.csv', index=False)
+print(f"Created sample dataset with {len(df)} rows")
+```
+
+**Note:** The sample data won't have realistic patterns, so model performance will differ from the actual Kaggle dataset.
+
 ## Installation & Setup
 
 ### Prerequisites
@@ -71,6 +132,9 @@ Tree-based ensemble methods (Random Forest, Gradient Boosting) excel at:
 **Software:**
 - Python 3.8 or higher
 - pip package manager
+
+**Dataset:**
+- Download `train.csv` from [Kaggle](https://www.kaggle.com/c/demand-forecasting-kernels-only/data) (required - see [Dataset](#dataset) section above)
 
 **Hardware:**
 - Minimum 4 GB RAM (8+ GB recommended)
@@ -82,6 +146,9 @@ Tree-based ensemble methods (Random Forest, Gradient Boosting) excel at:
 # Clone repository
 git clone https://github.com/yourusername/shelfcast.git
 cd shelfcast
+
+# Download dataset from Kaggle
+# Place train.csv in the project root (see Dataset section above)
 
 # Create virtual environment
 python -m venv .venv
@@ -98,21 +165,6 @@ nix develop
 
 # Dependencies are automatically available
 ```
-
-## Dataset
-
-This project uses the public [Store Item Demand Forecasting dataset from Kaggle](https://www.kaggle.com/c/demand-forecasting-kernels-only/data).
-
-**Dataset Structure:**
-- Format: CSV
-- Required columns: `date`, `store`, `item`, `sales`
-- Recommended size: 1000+ rows for meaningful pattern recognition
-- Time span: Multiple years to capture seasonal cycles
-
-**Setup:**
-1. Download `train.csv` from Kaggle
-2. Place in project root directory
-3. Ensure proper column naming
 
 ## Usage
 
