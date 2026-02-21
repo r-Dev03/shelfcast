@@ -324,10 +324,7 @@ Identify products with consistently low predicted demand to reduce order quantit
 
 MIT License - see LICENSE file for details
 
-## Contributing
-
-Contributions welcome! Please open an issue or submit a pull request.
-
 ---
 
 *Built to demonstrate practical machine learning applications in retail operations and inventory optimization.*
+
