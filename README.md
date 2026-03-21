@@ -245,25 +245,25 @@ Results on the Kaggle Store Item Demand dataset:
 ## Project Structure
 ```
 shelfcast/
-├── preprocessing.py              # Data cleaning and feature engineering
-├── model_training.py             # Train Random Forest and Gradient Boosting
-├── model_evaluation.py           # Evaluate models on test set
-├── cross_validation.py           # Time-series cross-validation
-├── hyperparameter_tuning.py      # Grid search optimization
-├── flake.nix                     # Nix development environment
-├── flake.lock                    # Nix lock file
-├── .envrc                        # direnv configuration
-├── train.csv                     # Raw dataset (download separately)
-├── preprocessed_data.csv         # Generated: cleaned data
-├── evaluation_results.csv        # Generated: performance metrics
-├── model_comparison.png          # Generated: visualization
-├── cv_results.csv                # Generated: CV metrics
-├── cross_validation_results.png  # Generated: CV visualization
-├── hyperparameter_tuning_results.csv  # Generated: tuning results
-├── best_rf_model.pkl             # Generated: trained Random Forest
-├── best_gb_model.pkl             # Generated: trained Gradient Boosting
-├── rf_model.pkl                  # Generated: baseline Random Forest
-├── gb_model.pkl                  # Generated: baseline Gradient Boosting
+├── preprocessing.py                    # Data cleaning and feature engineering
+├── model_training.py                   # Train Random Forest and Gradient Boosting
+├── model_evaluation.py                 # Evaluate models on test set
+├── cross_validation.py                 # Time-series cross-validation
+├── hyperparameter_tuning.py            # Grid search optimization
+├── flake.nix                           # Nix development environment
+├── flake.lock                          # Nix lock file
+├── .envrc                              # direnv configuration
+├── train.csv                           # Raw dataset (download separately)
+├── preprocessed_data.csv               # Generated: cleaned data
+├── evaluation_results.csv              # Generated: performance metrics
+├── model_comparison.png                # Generated: visualization
+├── cv_results.csv                      # Generated: CV metrics
+├── cross_validation_results.png        # Generated: CV visualization
+├── hyperparameter_tuning_results.csv   # Generated: tuning results
+├── best_rf_model.pkl                   # Generated: trained Random Forest
+├── best_gb_model.pkl                   # Generated: trained Gradient Boosting
+├── rf_model.pkl                        # Generated: baseline Random Forest
+├── gb_model.pkl                        # Generated: baseline Gradient Boosting
 ├── LICENSE
 └── README.md
 ```
