@@ -200,7 +200,10 @@ After running the pipeline:
 | `cv_results.csv` | Cross-validation fold metrics |
 | `cross_validation_results.png` | CV performance visualization |
 | `hyperparameter_tuning_results.csv` | Optimized model parameters and metrics |
-| `*.pkl` | Trained model files |
+| `best_rf_model.pkl` | Best Random Forest model |
+| `best_gb_model.pkl` | Best Gradient Boosting model |
+| `rf_model.pkl` | Baseline Random Forest model |
+| `gb_model.pkl` | Baseline Gradient Boosting model |
 
 ### Example: Generate Forecasts
 ```python
@@ -208,17 +211,21 @@ import pickle
 import pandas as pd
 
 # Load trained model
-with open('gradient_boosting_model.pkl', 'rb') as f:
+with open('best_rf_model.pkl', 'rb') as f:
     model = pickle.load(f)
 
 # Load preprocessed data
 data = pd.read_csv('preprocessed_data.csv')
 
-# Generate predictions for next 4 weeks
-future_features = data[['week_of_year', 'lag_1', 'lag_2', 'rolling_mean_4']].tail(4)
+# Prepare features for prediction (excluding 'sales' target column)
+feature_columns = ['store', 'item', 'year', 'month', 'week', 'day_of_week', 
+                   'sales_lag_1', 'sales_lag_2', 'sales_lag_4', 'sales_rolling_mean_4']
+
+# Generate predictions for the last 4 weeks in the dataset
+future_features = data[feature_columns].tail(4)
 forecasts = model.predict(future_features)
 
-print("Predicted demand for next 4 weeks:", forecasts)
+print("Predicted demand for last 4 weeks (example):", forecasts)
 ```
 
 ## Performance
