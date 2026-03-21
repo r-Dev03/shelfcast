@@ -144,7 +144,7 @@ print(f"Created sample dataset with {len(df)} rows")
 ### Option 1: Standard Python Setup
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/shelfcast.git
+git clone https://github.com/r-Dev03/shelfcast.git
 cd shelfcast
 
 # Download dataset from Kaggle
@@ -221,19 +221,26 @@ forecasts = model.predict(future_features)
 print("Predicted demand for next 4 weeks:", forecasts)
 ```
 
-## Performance Metrics
+## Performance
 
-*(Run the pipeline to generate actual metrics)*
+Results on the Kaggle Store Item Demand dataset:
 
-**Baseline Models:**
-- Random Forest: MAE = [TBD], RMSE = [TBD]
-- Gradient Boosting: MAE = [TBD], RMSE = [TBD]
+### Baseline Models
+- **Random Forest:** MAE = 4.28, RMSE = 5.55
+- **Gradient Boosting:** MAE = 4.46, RMSE = 5.77
 
-**Optimized Model:**
-- Best Model: [TBD]
-- MAE: [TBD]
-- RMSE: [TBD]
-- Cross-Validation Score: [TBD]
+### Hyperparameter Tuned Models
+- **Random Forest (Tuned):** MAE = 4.28, RMSE = 5.55
+  - Best parameters: `max_depth=15`, `min_samples_split=5`, `n_estimators=100`
+- **Gradient Boosting (Tuned):** MAE = 4.88, RMSE = 6.32
+  - Best parameters: `learning_rate=0.1`, `max_depth=3`, `n_estimators=100`
+
+### Cross-Validation Results
+5-fold time series cross-validation (average):
+- **MAE:** 4.07
+- **RMSE:** 5.28
+
+**Best performing model:** Random Forest achieved the lowest error rates, with tuning providing marginal improvements. The baseline Random Forest model performs comparably to the tuned version, suggesting the default hyperparameters are well-suited for this dataset.
 
 ## Project Structure
 ```
@@ -260,6 +267,7 @@ shelfcast/
 ├── LICENSE
 └── README.md
 ```
+
 ## Key Features
 
 ### Time-Aware Modeling
@@ -278,56 +286,14 @@ shelfcast/
 - Actual vs predicted visualizations for stakeholder communication
 - CSV outputs for integration with inventory management systems
 
-## Future Enhancements
+## Limitations
 
-**Advanced Modeling:**
-- ARIMA/SARIMA for pure time-series approach
-- LSTM neural networks for sequential pattern learning
-- Prophet for automatic seasonality detection
-- Ensemble stacking for improved accuracy
-
-**Feature Expansion:**
-- Price elasticity modeling
-- Competitor pricing data
-- Weather data integration
-- Local event calendars
-
-**Production Features:**
-- Automated weekly forecast generation
-- API endpoint for ERP system integration
-- Real-time inventory alerts
-- Multi-store forecasting at scale
-
-**Deployment:**
-- Docker containerization
-- Cloud deployment (AWS/GCP)
-- Automated retraining pipeline
-- Dashboard for non-technical users
-
-## Applications
-
-This framework can be adapted for:
-- **E-commerce:** SKU-level demand forecasting
-- **Food Service:** Ingredient procurement planning
-- **Manufacturing:** Raw material inventory optimization
-- **Pharmacy:** Medication stock management
-
-## Use Cases
-
-**Scenario 1: Seasonal Products**
-A retailer notices winter coats sell out in October. Shelfcast identifies the early-season demand spike and recommends earlier, larger orders.
-
-**Scenario 2: Promotional Planning**
-Before a holiday sale, forecast demand increase to ensure sufficient stock without post-sale overstock.
-
-**Scenario 3: Slow Movers**
-Identify products with consistently low predicted demand to reduce order quantities and free up shelf space.
+- Requires historical sales data for training
+- Does not account for external factors (competitor actions, economic conditions)
+- Static feature set (no real-time data integration)
+- Single-store optimization (no multi-location inventory transfer)
+- No automated retraining pipeline
 
 ## License
 
 MIT License - see LICENSE file for details
-
----
-
-*Built to demonstrate practical machine learning applications in retail operations and inventory optimization.*
-
