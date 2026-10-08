@@ -25,6 +25,14 @@ with open('gb_model.pkl', 'rb') as f:
 rf_predictions = rf_model.predict(X_test)
 gb_predictions = gb_model.predict(X_test)
 
+# Naive baseline: predict the same sales as one week earlier
+baseline_mae = mean_absolute_error(y_test, X_test['sales_lag_7'])
+baseline_rmse = np.sqrt(mean_squared_error(y_test, X_test['sales_lag_7']))
+
+print("=== Naive Baseline (same day last week) ===")
+print(f"Mean Absolute Error (MAE): {baseline_mae:.4f}")
+print(f"Root Mean Squared Error (RMSE): {baseline_rmse:.4f}\n")
+
 # Evaluate Random Forest
 rf_mae = mean_absolute_error(y_test, rf_predictions)
 rf_rmse = np.sqrt(mean_squared_error(y_test, rf_predictions))
@@ -50,6 +58,9 @@ else:
     print("✓ Gradient Boosting performs better (lower MAE)")
     best_model = gb_model
     best_name = "Gradient Boosting"
+
+best_mae = min(rf_mae, gb_mae)
+print(f"{best_name} cuts MAE by {(1 - best_mae / baseline_mae) * 100:.1f}% versus the naive baseline")
 
 # Visualization
 plt.figure(figsize=(12, 5))
@@ -77,9 +88,9 @@ plt.savefig('model_comparison.png', dpi=150)
 print("\n✓ Comparison plot saved to: model_comparison.png")
 
 results_df = pd.DataFrame({
-    'Model': ['Random Forest', 'Gradient Boosting'],
-    'MAE': [rf_mae, gb_mae],
-    'RMSE': [rf_rmse, gb_rmse]
+    'Model': ['Naive Baseline', 'Random Forest', 'Gradient Boosting'],
+    'MAE': [baseline_mae, rf_mae, gb_mae],
+    'RMSE': [baseline_rmse, rf_rmse, gb_rmse]
 })
 results_df.to_csv('evaluation_results.csv', index=False)
 print("✓ Evaluation results saved to: evaluation_results.csv")

@@ -49,7 +49,7 @@ print(f"Best RF CV Score (MAE): {-rf_grid_search.best_score_:.4f}")
 gb_param_grid = {
     'n_estimators': [50, 100],
     'learning_rate': [0.05, 0.1],
-    'max_depth': [3, 57]
+    'max_depth': [3, 5]
 }
 
 print("\n\nTuning Gradient Boosting...")

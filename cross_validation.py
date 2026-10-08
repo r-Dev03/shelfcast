@@ -10,8 +10,8 @@ preprocessed_df = pd.read_csv('preprocessed_data.csv')
 X = preprocessed_df.drop('sales', axis=1)
 y = preprocessed_df['sales']
 
-# Load best model 
-with open('rf_model.pkl', 'rb') as f:
+# Load the tuned Random Forest (run hyperparameter_tuning.py first)
+with open('best_rf_model.pkl', 'rb') as f:
     model = pickle.load(f)
 
 # Time Series Cross-Validation (5 splits)

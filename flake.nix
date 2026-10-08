@@ -1,5 +1,5 @@
 {
-  description = "DQN1 AI project dev shell";
+  description = "Shelfcast dev shell";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
