@@ -42,3 +42,7 @@ result-*
 # OS
 .DS_Store
 Thumbs.db
+
+# Run logs
+*.txt
+!requirements.txt
