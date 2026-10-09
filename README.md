@@ -17,8 +17,6 @@ Trained on January 2013 through the first days of 2017, tested on the rest of 20
 
 Gradient boosting cuts the error by **27% relative to the naive baseline**.
 
-**Tuning and cross-validation:** GridSearchCV with a 3-fold `TimeSeriesSplit` kept the original settings for both models (Random Forest: 100 trees, depth 15; gradient boosting: 100 trees, depth 5, learning rate 0.1), so the tuned models score the same as the table above. Five-fold time-series cross-validation of the tuned Random Forest gives a mean MAE of **6.26 (± 0.28)**, with error rising in the later folds.
-
 ## Highlights
 
 - Forecasts daily sales for 10 stores × 50 items from five years of Kaggle sales history
@@ -77,5 +75,5 @@ Python · pandas · NumPy · scikit-learn · matplotlib
 ## Known Limitations
 
 - **One-day-ahead only.** The lag features assume yesterday's sales are known, so the models can't forecast several days out without feeding their own predictions back in.
-- **Single holdout period.** The headline numbers come from one train/test split (nearly all of 2017). Cross-validation shows they vary by about ± 0.3 MAE across periods.
+- **Single holdout period.** The headline numbers come from one train/test split (nearly all of 2017). Cross-validation shows how much they vary across periods.
 - **No external signals.** Holidays, promotions, and prices aren't in the dataset, so spikes driven by them can't be predicted.
