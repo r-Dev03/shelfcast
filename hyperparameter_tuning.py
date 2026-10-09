@@ -33,7 +33,7 @@ tscv = TimeSeriesSplit(n_splits=3)
 
 print("Tuning Random Forest...")
 rf_grid_search = GridSearchCV(
-    RandomForestRegressor(random_state=42, n_jobs=-1),
+    RandomForestRegressor(random_state=42, n_jobs=1),
     rf_param_grid,
     cv=tscv,
     scoring='neg_mean_absolute_error',

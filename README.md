@@ -7,7 +7,7 @@
 
 ## Results
 
-Trained on 2013–2016, tested on 2017 (181,200 predictions):
+Trained on January 2013 through the first days of 2017, tested on the rest of 2017 (181,200 predictions):
 
 | Model | MAE | RMSE |
 |-------|-----|------|
@@ -16,6 +16,8 @@ Trained on 2013–2016, tested on 2017 (181,200 predictions):
 | **Gradient Boosting** | **6.43** | **8.37** |
 
 Gradient boosting cuts the error by **27% relative to the naive baseline**.
+
+**Tuning and cross-validation:** GridSearchCV with a 3-fold `TimeSeriesSplit` kept the original settings for both models (Random Forest: 100 trees, depth 15; gradient boosting: 100 trees, depth 5, learning rate 0.1), so the tuned models score the same as the table above. Five-fold time-series cross-validation of the tuned Random Forest gives a mean MAE of **6.26 (± 0.28)**, with error rising in the later folds.
 
 ## Highlights
 
@@ -60,8 +62,8 @@ pip install pandas numpy scikit-learn matplotlib
 python preprocessing.py          # builds features → preprocessed_data.csv
 python model_training.py         # trains both models → rf_model.pkl, gb_model.pkl
 python model_evaluation.py       # baseline vs models → evaluation_results.csv, model_comparison.png
-python hyperparameter_tuning.py  # GridSearchCV → best_rf_model.pkl, best_gb_model.pkl
-python cross_validation.py       # 5-fold time-series CV of the tuned Random Forest
+python hyperparameter_tuning.py  # GridSearchCV → best_rf_model.pkl, best_gb_model.pkl, hyperparameter_tuning_results.csv
+python cross_validation.py       # 5-fold time-series CV of the tuned Random Forest → cv_results.csv, cross_validation_results.png
 ```
 
 Or, with Nix: `nix develop`, then run the same scripts.
@@ -75,5 +77,5 @@ Python · pandas · NumPy · scikit-learn · matplotlib
 ## Known Limitations
 
 - **One-day-ahead only.** The lag features assume yesterday's sales are known, so the models can't forecast several days out without feeding their own predictions back in.
-- **Single holdout year.** The headline numbers come from one train/test split (2017). Cross-validation shows how much they vary across periods.
+- **Single holdout period.** The headline numbers come from one train/test split (nearly all of 2017). Cross-validation shows they vary by about ± 0.3 MAE across periods.
 - **No external signals.** Holidays, promotions, and prices aren't in the dataset, so spikes driven by them can't be predicted.
